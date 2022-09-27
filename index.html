@@ -94,7 +94,7 @@
             localStorage.setItem("nofactories",nofactories);
         }
         function factorywork(){
-            x=ParseInt(x)+ParseInt(nofactories)*ParseInt(level);
+            x=x*1+nofactories*1;
             document.getElementById("score").innerHTML=x;
         }
         function clearitout(){
@@ -130,9 +130,9 @@
                 alert("too poor");
             }
             else{
-                x=x*1-((a*1+b*1)*100);
+                x=x*1-(b*100);
                 nofactories=nofactories*1+1*1;
-                document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a+b)+"<br>Number of factories:<br>"+nofactories;
+                document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a*1+b*1)+"<br>Number of factories:<br>"+nofactories;
             }
         }
     </script>
@@ -166,7 +166,8 @@
                 document.getElementById('clickdetails').innerHTML="Details:<br>Clickpower: +1<br>Cost: "+1*(clickpower*1-1)*(clickpower*1-1)*50 +"<br>Current Clickpower: " +clickpower;
             }
         }
-            setInterval(factorywork(),1000)
+        setInterval(factorywork,2000)
+
     </script>
     <div class="entire">
         <div class="main">

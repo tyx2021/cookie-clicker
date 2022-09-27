@@ -131,6 +131,7 @@
             }
             else{
                 x=x*1-(b*100);
+                document.getElementById('score').innerHTML=x;
                 nofactories=nofactories*1+1*1;
                 document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a*1+b*1)+"<br>Number of factories:<br>"+nofactories;
             }

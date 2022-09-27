@@ -101,6 +101,8 @@
             localStorage.removeItem("x");
             localStorage.removeItem("clickpower");
             localStorage.removeItem("nofactories");
+            localStorage.removeItem("a");
+            localStorage.removeItem("b");
             document.location.reload(true);
         }
         function Clickupgrade(){
@@ -120,7 +122,18 @@
             document.getElementById("score").innerHTML=x;
         }
         function getfactory(){
-            
+            a=localStorage.getItem("a");
+            b=localStorage.getItem("b");
+            localStorage.setItem("b",a*1+b*1);
+            localStorage.setItem("a",b);
+            if(x<100*b){
+                alert("too poor");
+            }
+            else{
+                x=x*1-((a*1+b*1)*100);
+                nofactories=nofactories*1+1*1;
+                document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a+b)+"Number of factories:<br>"+nofactories;
+            }
         }
     </script>
 </head>
@@ -143,7 +156,7 @@
             } else {
                 nofactories=0;
                 localStorage.setItem("a",0);
-                localStorage.setItem("b",0);
+                localStorage.setItem("b",1);
             }
             document.getElementById("score").innerHTML=x;
             if(clickpower==1){

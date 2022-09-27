@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+        body{
+            font-family: 'Cookie', cursive;
+            font-size:30px;
+        }
+        .main{
+            display: block;
+            background-color: white;
+            border: white;
+            text-align: center;
+        }
+        .oop{
+            background-color: white;
+            border: white;
+        }
+        .button{
+            padding: 15 25;
+            width: 200px;
+            height: 75px;
+        }
+        .button:active{
+            transform: translateY(4px);
+        }
+        .button:hover{
+            opacity: 80%;
+        }
+        .cookie:active{
+            transform: translateY(10px);
+            
+        }
+        .shop{
+            display: block;
+            background-color: white;
+            border: white;
+            text-align: center;
+            height: 450px;
+        }
+        .entire{
+            column-count: 2;
+            column-gap: 10em;
+            column-rule: black;
+            column-rule-width: 2px;
+            column-rule-style: solid;
+            height: 500px;
+        }
+        .buy{
+            column-count: 2;
+            column-gap:2em;
+            text-align: center;
+            height: 450px;
+        }
+        #score{
+            font-family: 'Bungee Spice', cursive;
+            font-size: larger;
+        }
+        img{
+            height: 20%;
+            width: auto;
+        }
+        .button2{
+            height: auto;
+            width: 100px;
+        }
+        .button2:active{
+            transform: translateY(4px);
+        }
+        .button2:hover{
+            opacity: 80%;
+        }
+        .boo{
+            height: 300px;
+        }
+        #credits{
+            text-align: center;
+        }
+    </style>
+    <script>
+        function clicky() {
+            x=1*x+1*clickpower;
+            document.getElementById("score").innerHTML = x;
+        }
+        function saveprogress(){
+            localStorage.setItem("x", x);
+            localStorage.setItem("clickpower",clickpower);
+            localStorage.setItem("nofactories",nofactories);
+        }
+        function factorywork(){
+            x=ParseInt(x)+ParseInt(nofactories)*ParseInt(level);
+            document.getElementById("score").innerHTML=x;
+        }
+        function clearitout(){
+            localStorage.removeItem("x");
+            localStorage.removeItem("clickpower");
+            localStorage.removeItem("nofactories");
+            document.location.reload(true);
+        }
+        function Clickupgrade(){
+            if(x<1*(clickpower*1-1)*(clickpower*1-1)*50||x<10){
+                alert("Too poor!");
+            }
+            else{
+                if(clickpower==1){
+                    x=x*1-10;
+                }
+                else{
+                    x=1*x-1*(clickpower*1-1)*(clickpower*1-1)*50;
+                }
+                clickpower=1*clickpower+1;
+                    document.getElementById('clickdetails').innerHTML="Details:<br>Clickpower: +1<br>Cost: "+1*(clickpower*1-1)*(clickpower*1-1)*50 +"<br>Current Clickpower: " +clickpower;
+            }
+            document.getElementById("score").innerHTML=x;
+        }
+        function getfactory(){
+            
+        }
+    </script>
+</head>
+
+<body onload="load()">
+    <script>
+        function load(){
+            if (localStorage.getItem('x') != null) {
+                x=localStorage.getItem("x");
+            } else {
+                x=0;
+            }
+            if (localStorage.getItem('clickpower') != null) {
+                clickpower=localStorage.getItem("clickpower");
+            } else {
+                clickpower=1;
+            }
+            if (localStorage.getItem('nofactories') != null) {
+                nofactories=localStorage.getItem("nofactories");
+            } else {
+                nofactories=0;
+                localStorage.setItem("a",0);
+                localStorage.setItem("b",0);
+            }
+            document.getElementById("score").innerHTML=x;
+            if(clickpower==1){
+                document.getElementById('clickdetails').innerHTML="Details:<br>Clickpower: +1<br>Cost: "+10 +"<br>Current Clickpower: " +clickpower;
+            }
+            else{
+                document.getElementById('clickdetails').innerHTML="Details:<br>Clickpower: +1<br>Cost: "+1*(clickpower*1-1)*(clickpower*1-1)*50 +"<br>Current Clickpower: " +clickpower;
+            }
+        }
+            setInterval(factorywork(),1000)
+    </script>
+    <div class="entire">
+        <div class="main">
+            <p id="score">0</p>
+            <img src="./images/cookie.png" class="cookie" onclick="clicky()">
+            <br>
+            <img class="button2" onclick="saveprogress()" src="./images/save.png" >
+            <img class="button2" onclick="clearitout()" src="./images/restart.png">
+        </div>
+        <div class="shop">
+            <img src="./images/shop.png" alt="Shop" style="width: 100px;">
+            <hr>
+            <div class="buy">
+                <div class="boo">
+                    <img class="button" onclick="Clickupgrade()" src="./images/click.png" alt="clickupgrade">
+                    <p id="clickdetails">
+                        Details:
+                        <br>
+                        Clickpower: +1
+                        <br>
+                        Cost: 10
+                        <br>
+                        Current Clickpower: 1
+                    </p>
+                </div>
+                <div class="boo">
+                    <img src="./images/basic_factory.png" alt="basic factory" class="button" onclick="">
+                    <p id="facdetails">
+                        Details:
+                        <br>
+                        Factory: 0.5/s
+                        <br>
+                        Cost: 100
+                        <br>
+                        Number of Factories:
+                        <br>
+                        0
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <p id="credits">
+        Credits:
+        <br>
+        Coding by Yi Xiang
+        <br>
+        Graphics by Wen Bin
+    </p>
+</body>
+</html>

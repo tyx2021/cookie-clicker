@@ -132,7 +132,7 @@
             else{
                 x=x*1-((a*1+b*1)*100);
                 nofactories=nofactories*1+1*1;
-                document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a+b)+"Number of factories:<br>"+nofactories;
+                document.getElementById('facdetails').innerHTML="Details:<br>Factory: 0.5/s<br>Cost: "+100*(a+b)+"<br>Number of factories:<br>"+nofactories;
             }
         }
     </script>
@@ -155,7 +155,7 @@
                 nofactories=localStorage.getItem("nofactories");
             } else {
                 nofactories=0;
-                localStorage.setItem("a",0);
+                localStorage.setItem("a",1);
                 localStorage.setItem("b",1);
             }
             document.getElementById("score").innerHTML=x;
